@@ -28,5 +28,5 @@ touch /.mongodb_password_set
 echo "========================================================================"
 echo "You can now connect to this MongoDB server using:"
 echo ""
-echo "    mongo admin -u admin -p $PASS --host <host> --port <port>"
+echo "    mongo admin -u admin -p 'admin' --host <host> --port <port>"
 echo "========================================================================"
