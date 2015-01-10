@@ -18,6 +18,10 @@ Running the MongoDB server
 Run the following command to start MongoDB:
 
         docker run -d -p 27017:27017 -p 28017:28017 fnubhupen/mongodb
+        
+Run the following command to start MongoDB:
+
+        docker run -d -p 27017:27017 -p 28017:28017 -v <host location>:/data/db fnubhupen/mongodb        
 
 The first time that you run your container, a new random password will be set.
 To get the password, check the logs of the container by running:
@@ -29,18 +33,10 @@ You will see an output like the following:
         ========================================================================
         You can now connect to this MongoDB server using:
 
-            mongo admin -u admin -p 5elsT6KtjrqV --host <host> --port <port>
+            mongo admin -u admin -p admin --host <host> --port <port>
 
         Please remember to change the above password as soon as possible!
         ========================================================================
-
-In this case, `5elsT6KtjrqV` is the password set. 
-You can then connect to MongoDB:
-
-         mongo admin -u admin -p 5elsT6KtjrqV
-
-Done!
-
 
 Setting a specific password for the admin account
 -------------------------------------------------
