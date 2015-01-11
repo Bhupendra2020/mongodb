@@ -33,10 +33,17 @@ You will see an output like the following:
         ========================================================================
         You can now connect to this MongoDB server using:
 
-            mongo admin -u admin -p admin --host <host> --port <port>
+            mongo admin -u admin -p 5elsT6KtjrqV --host <host> --port <port>
 
         Please remember to change the above password as soon as possible!
         ========================================================================
+
+In this case, `5elsT6KtjrqV` is the password set. 
+You can then connect to MongoDB:
+
+         mongo admin -u admin -p 5elsT6KtjrqV
+
+Done!
 
 Setting a specific password for the admin account
 -------------------------------------------------
