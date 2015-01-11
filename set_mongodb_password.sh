@@ -7,8 +7,8 @@ fi
 
 /usr/bin/mongod --smallfiles --nojournal &
 
-PASS="admin"
-#_word=$( [ ${MONGODB_PASS} ] && echo "preset" || echo "random" )
+PASS=${MONGODB_PASS:-$(pwgen -s 12 1)}
+_word=$( [ ${MONGODB_PASS} ] && echo "preset" || echo "random" )
 
 RET=1
 while [[ RET -ne 0 ]]; do
@@ -18,8 +18,8 @@ while [[ RET -ne 0 ]]; do
     RET=$?
 done
 
-echo "=> Creating an admin user with a 'admin' password in MongoDB"
-mongo admin --eval "db.addUser({user: 'admin', pwd: 'admin', roles: [ 'userAdminAnyDatabase', 'dbAdminAnyDatabase' ]});"
+echo "=> Creating an admin user with a ${_word} password in MongoDB"
+mongo admin --eval "db.addUser({user: 'admin', pwd: '$PASS', roles: [ 'userAdminAnyDatabase', 'dbAdminAnyDatabase' ]});"
 mongo admin --eval "db.shutdownServer();"
 
 echo "=> Done!"
@@ -28,5 +28,7 @@ touch /.mongodb_password_set
 echo "========================================================================"
 echo "You can now connect to this MongoDB server using:"
 echo ""
-echo "    mongo admin -u admin -p 'admin' --host <host> --port <port>"
+echo "    mongo admin -u admin -p $PASS --host <host> --port <port>"
+echo ""
+echo "Please remember to change the above password as soon as possible!"
 echo "========================================================================"
