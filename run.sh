@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ -f /data/db/mongod.lock ]; then
+   rm /data/db/mongod.lock
+   echo "find and remove mongod.lock file !!"
+fi
 
 if [ ! -f /.mongodb_password_set ]; then
 	/set_mongodb_password.sh
